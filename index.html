@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Autopeças</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="login-container" id="loginContainer">
+
+    <div class="login-box">
+
+      <h1>AutoPeças Pro</h1>
+
+      <p style="text-align:center; margin-bottom:15px;">
+        Usuário: <strong>admin</strong><br>
+        Senha: <strong>1234</strong>
+      </p>
+
+      <form id="formLogin">
+
+        <input 
+          type="text" 
+          id="usuario" 
+          placeholder="Usuário" 
+          autocomplete="off"
+          required
+        >
+
+        <input 
+          type="password" 
+          id="senha" 
+          placeholder="Senha"
+          autocomplete="off"
+          required
+        >
+
+        <button type="submit">
+          Entrar
+        </button>
+
+      </form>
+
+      <div id="erroLogin" class="erro-login"></div>
+
+    </div>
+
+  </div>
+
+  <div id="sistema">
+
+    <header>
+
+      <div>
+        <h1>Sistema de Autopeças</h1>
+      </div>
+
+      <nav>
+        <button onclick="mostrarSecao('dashboard')">Dashboard</button>
+        <button onclick="mostrarSecao('clientes')">Clientes</button>
+        <button onclick="mostrarSecao('estoque')">Estoque</button>
+        <button onclick="mostrarSecao('vendas')">Vendas</button>
+        <button onclick="logout()" class="btn-sair">Sair</button>
+        <button id="temaBtn">🌙 Tema Escuro</button>
+      </nav>
+
+    </header>
+
+    <section id="dashboard" class="secao">
+
+      <h2>Dashboard</h2>
+
+      <div class="cards">
+
+        <div class="card">
+          <h3>Total de Clientes</h3>
+          <span id="totalClientes">0</span>
+        </div>
+
+        <div class="card">
+          <h3>Total de Peças</h3>
+          <span id="totalPecas">0</span>
+        </div>
+
+        <div class="card">
+          <h3>Vendas Realizadas</h3>
+          <span id="totalVendas">0</span>
+        </div>
+
+        <div class="card">
+          <h3>Valor em Estoque</h3>
+          <span id="valorEstoque">R$ 0,00</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="clientes" class="secao">
+
+      <h2>Cadastro de Clientes</h2>
+
+      <form id="formCliente">
+
+        <input 
+          type="text" 
+          id="nomeCliente" 
+          placeholder="Nome do Cliente"
+          required
+        >
+
+        <input 
+          type="text" 
+          id="telefoneCliente" 
+          placeholder="Telefone"
+          required
+        >
+
+        <button type="submit">
+          Salvar Cliente
+        </button>
+
+      </form>
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody id="tabelaClientes"></tbody>
+
+      </table>
+
+    </section>
+
+    <section id="estoque" class="secao">
+
+      <h2>Controle de Estoque</h2>
+
+      <form id="formPeca">
+
+        <input 
+          type="text" 
+          id="nomePeca" 
+          placeholder="Nome da Peça"
+          required
+        >
+
+        <input 
+          type="text" 
+          id="categoriaPeca" 
+          placeholder="Categoria"
+          required
+        >
+
+        <input 
+          type="number" 
+          id="quantidadePeca" 
+          placeholder="Quantidade"
+          required
+        >
+
+        <input 
+          type="number" 
+          id="estoqueMinimo" 
+          placeholder="Estoque Mínimo"
+          required
+        >
+
+        <input 
+          type="number" 
+          id="precoPeca" 
+          placeholder="Preço"
+          step="0.01"
+          required
+        >
+
+        <button type="submit">
+          Cadastrar Peça
+        </button>
+
+      </form>
+
+      <div class="filtros">
+
+        <input 
+          type="text" 
+          id="pesquisaPeca" 
+          placeholder="Pesquisar peça..."
+        >
+
+        <select id="filtroCategoria">
+          <option value="">Todas Categorias</option>
+        </select>
+
+      </div>
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Quantidade</th>
+            <th>Mínimo</th>
+            <th>Preço</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+
+        <tbody id="tabelaPecas"></tbody>
+
+      </table>
+
+    </section>
+
+    <section id="vendas" class="secao">
+
+      <h2>Registrar Venda</h2>
+
+      <div class="venda-form">
+
+        <select id="clienteVenda"></select>
+
+        <select id="pecaVenda"></select>
+
+        <input 
+          type="number" 
+          id="quantidadeVenda"
+          min="1"
+          value="1"
+        >
+
+        <button id="btnRegistrarVenda">
+          Registrar
+        </button>
+
+      </div>
+
+      <h3>Histórico</h3>
+
+      <table>
+
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Cliente</th>
+            <th>Peça</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+
+        <tbody id="tabelaVendas"></tbody>
+
+      </table>
+
+    </section>
+
+  </div>
+
+  <script src="java.js"></script>
+
+</body>
+</html>
